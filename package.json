@@ -21,7 +21,13 @@
   "homepage": "https://github.com/yarostbaklajana/TodoList",
   "devDependencies": {
     "babel": "^6.5.2",
+    "css-loader": "^0.25.0",
     "node-sass": "^3.10.1",
+    "sass-loader": "^4.0.2",
     "webpack": "^1.13.3"
+  },
+  "dependencies": {
+    "bootstrap-sass": "^3.3.7",
+    "font-awesome": "^4.7.0"
   }
 }
