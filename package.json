@@ -1,0 +1,27 @@
+{
+  "name": "TodoList",
+  "version": "1.0.0",
+  "description": "Implementation of TodoList using TravisCI and Knockout",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yarostbaklajana/TodoList.git"
+  },
+  "keywords": [
+    "todolist"
+  ],
+  "author": "Anastasiia Skorobohata",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yarostbaklajana/TodoList/issues"
+  },
+  "homepage": "https://github.com/yarostbaklajana/TodoList",
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "node-sass": "^3.10.1",
+    "webpack": "^1.13.3"
+  }
+}
