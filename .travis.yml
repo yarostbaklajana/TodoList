@@ -11,3 +11,4 @@ deploy:
   on: 
     all_branches: true
     condition: "$TRAVIS_PULL_REQUEST != true || $TRAVIS_BRANCH != gh-pages" 
+    
