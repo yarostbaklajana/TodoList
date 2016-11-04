@@ -13,7 +13,7 @@ git config --global user.name "Travis CI"
 # deploy
 cd public
 git init
-git add --all
+git add .
 git commit -m "Deployed to Github Pages"
 git push --force --quiet $REPO master:gh-pages 
 echo "Successfully pushed changes to GitHub Pages"

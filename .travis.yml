@@ -1,6 +1,9 @@
 language: node_js
 node_js:
   - 6.9.1
+before_install:
+- chmod 755 ./deploy.sh
+- chmod 755 ./copy-files.sh
 script: npm run build
 deploy:
   provider: script
