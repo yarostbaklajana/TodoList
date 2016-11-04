@@ -10,4 +10,4 @@ deploy:
   skip_cleanup: true
   on: 
     all_branches: true
-    condition: "$TRAVIS_PULL_REQUEST" != "true" -o "$TRAVIS_BRANCH" != "gh-pages"
+    condition: "$TRAVIS_PULL_REQUEST" != "true" || "$TRAVIS_BRANCH" != "gh-pages" 
