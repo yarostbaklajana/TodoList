@@ -4,7 +4,6 @@ set -o errexit #abort if any command fails
 
 REPO=https://yarostbaklajana:$GH_TOKEN@github.com/yarostbaklajana/TodoList.git
 
-./copy-files.sh
 
 # config
 git config --global user.email "travis"
