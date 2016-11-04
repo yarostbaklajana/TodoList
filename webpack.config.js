@@ -8,7 +8,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, "/build"),
         filename: "[name].js",
-        publicPath: "/"
+        publicPath: process.env.WEBPACK_PUBLIC_PATH || "/"
     },
 
     resolve: {
