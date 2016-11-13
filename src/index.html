@@ -2,8 +2,39 @@
 <html>
 <head>
     <title>Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
-    <p class="greater">Hello world</p>
+<body> 
+    <main id="main-container">
+        <h1 class="page-heading">todos</h1>
+        <section id="todos-container">
+            <article class="centering-helper">
+        	<form class="todo-bar">
+                <div class="input-container">
+                    <input type="text" placeholder="What needs to be done?" class="todo-bar-input" />  
+                    <span class="glyphicon glyphicon-menu-down icon"></span>
+                                 
+                </div>
+        		
+        		<ul class="todo-bar-body">
+        			<li class="goal checked"><span class="fa fa-check-circle icon"></span>Try JavaScript</li>
+        			<li class="goal"><span class="fa fa-circle-o icon"></span>Buy a Unicorn</li>
+        		</ul>
+        		<div class="todo-bar-bottom">
+        			<p class="items-left">1 item left</p>
+        			<div class="check-option">
+        				<button class="active" type="button">All</button>
+        				<button type="button">Active</button>
+        				<button type="button">Completed</button>
+        			</div>
+                    <div class="clearer-container">
+                        <button type="button" class="clear-completed">Clear completed</button>
+                    </div>
+        			
+        		</div>
+        	</form>
+        </article>
+        </section>
+    </main>
 </body>
 </html>

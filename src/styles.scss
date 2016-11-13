@@ -1,4 +1,193 @@
-.greater {
-  color: red;
-  font-size: 26px;
+html {
+    font-size: 14px;
+}
+
+@mixin font-face($Name, $ext) {
+    @font-face {
+        font-family: $Name;
+        font-weight: normal;
+        src: url("fonts/" + $Name + "." + $ext) format($ext);
+    }
+}
+
+@mixin bar-positioning($top) {
+    position: absolute;
+    top: $top;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+$Quicksand_Light: "Quicksand-Light";
+$background-color: #f2f2f2;
+$border-text-color: #e2e2e2;
+$text-color-darkeen: #a5a5a5;
+$border-default: 1px solid $border-text-color;
+$border-fat-default: 2px solid $border-text-color;
+$bar-shadow: 0px 2px 5px 1px rgba(148,
+148,
+148,
+1);
+$large-font: 13rem;
+$medium-font: 4rem;
+$small-font: 2rem;
+$min-width-default: 1366px;
+%icons-template {
+    margin: auto 0.5em;
+}
+
+%line-template {
+    font-size: $medium-font;
+}
+
+%button-template {
+    border: none;
+    background: transparent;
+    outline: none;
+    &:hover {
+        color: #3489a8;
+        font-weight: bold;
+    }
+}
+
+%clearfix {
+    &:before {
+        content: "";
+        display: table;
+    }
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+@include font-face($Quicksand_Light,
+"woff");
+body {
+    background-color: $background-color;
+    margin: 0;
+    font-family: $Quicksand_Light;
+}
+
+#main-container {
+    min-width: $min-width-default;
+}
+
+.page-heading {
+    color: #c69f9f;
+    font-size: $large-font;
+    text-align: center;
+    margin: 0px;
+}
+
+#todos-container {
+    @extend #main-container;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+}
+
+.centering-helper {
+    height: 100%;
+}
+
+.todo-bar {
+    @include bar-positioning(50%);
+    color: $border-text-color;
+    background-color: white;
+    border: $border-default;
+    box-shadow: $bar-shadow;
+    width: 75%;
+}
+
+.input-container {
+    border-bottom: $border-fat-default;
+    position: relative;
+    @extend %line-template;
+    .icon {
+        @extend %icons-template;
+        padding: 1rem 0;
+    }
+    .todo-bar-input:focus+.icon {
+        color: indianred;
+    }
+    @extend %clearfix;
+}
+
+.todo-bar-input {
+    background: transparent;
+    width: calc(100% - 8rem);
+    border: none;
+    font-style: italic;
+    outline: none;
+    float: right;
+    &:focus {
+        color: black;
+    }
+}
+
+.todo-bar-body {
+    border-bottom: $border-fat-default;
+    margin: 0;
+    padding: 0;
+}
+
+.goal {
+    @extend %line-template;
+    border-bottom: $border-default;
+    margin: 0;
+    list-style-type: none;
+    &:last-child {
+        border: none;
+    }
+    &.checked {
+        .icon {
+            color: #91ea9b;
+        }
+        text-decoration: line-through;
+    }
+    .icon {
+        @extend %icons-template;
+        &:hover {
+            color: #91ea9b;
+        }
+    }
+}
+
+.todo-bar-bottom {
+    font-size: $small-font;
+    color: $text-color-darkeen;
+    @extend %clearfix;
+}
+
+.items-left {
+    margin: 20px 0 20px 3%;
+    float: left;
+    width: 27%;
+}
+
+.check-option {
+    margin: 20px auto;
+    width: 40%;
+    float: left;
+    button {
+        @extend %button-template;
+    }
+    .active {
+        border: $border-default;
+    }
+}
+
+.clearer-container {
+    @extend .items-left;
+    button {
+        @extend %button-template;
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    html {
+        font-size: 18px;
+    }
 }
