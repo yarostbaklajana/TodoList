@@ -4,24 +4,30 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
     context: path.join(__dirname, "/src"),
     entry: ["./app"],
-
     output: {
         path: path.join(__dirname, "/build"),
-        filename: "[name].js",
+        filename: "app.js",
         publicPath: process.env.WEBPACK_PUBLIC_PATH || "/"
     },
-
     resolve: {
-        extensions: ["", ".js"],
-        modulesDirectories: ["node_modules"]
+        extensions: ["", ".js", ".scss"],
+        modulesDirectories: ["node_modules"],
+        root: [path.resolve('./node_modules')]
     },
     module: {
         loaders: [
             {
+                test: /\.css$/,
+                loader: ExtractTextPlugin.extract(['css'])
+            },
+            {
                 test: /\.scss$/,
                 loader: ExtractTextPlugin.extract(['css', 'sass'])
             },
- 
+            {
+                test: /\.(jpe|jpg|woff|woff2|eot|ttf|svg)(\?.*$|$)/,
+                loader: 'url?limit=8192&name=assets/[name].[ext]'            
+            },
             {
                 test: /\.js$/,
                 loader: 'babel', 
@@ -32,7 +38,6 @@ module.exports = {
             }
         ]
     },
-
     plugins: [
         new HtmlWebpackPlugin({
             filename: "index.html",
@@ -41,5 +46,4 @@ module.exports = {
 
         new ExtractTextPlugin("style.css")
     ]
-
 };
