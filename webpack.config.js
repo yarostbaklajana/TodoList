@@ -10,9 +10,8 @@ module.exports = {
         publicPath: process.env.WEBPACK_PUBLIC_PATH || "/"
     },
     resolve: {
-        extensions: ["", ".js", ".scss"],
-        modulesDirectories: ["node_modules"],
-        root: [path.resolve('./node_modules')]
+        extensions: ["", ".js"],
+        modulesDirectories: ["node_modules"]
     },
     module: {
         loaders: [
