@@ -10,13 +10,6 @@ html {
     }
 }
 
-@mixin bar-positioning($top) {
-    position: absolute;
-    top: $top;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
 $Quicksand_Light: "Quicksand-Light";
 $background-color: #f2f2f2;
 $border-text-color: #e2e2e2;
@@ -69,8 +62,17 @@ body {
     font-family: $Quicksand_Light;
 }
 
-#main-container {
+.main-container {
     min-width: $min-width-default;
+    height: 100vh;   
+}
+
+.todos-container {
+     display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 80%;
 }
 
 .page-heading {
@@ -78,22 +80,10 @@ body {
     font-size: $large-font;
     text-align: center;
     margin: 0px;
-}
-
-#todos-container {
-    @extend #main-container;
-    width: 100%;
-    height: 100vh;
-    position: absolute;
-    top: 0;
-}
-
-.centering-helper {
-    height: 100%;
+    height: 20%;
 }
 
 .todo-bar {
-    @include bar-positioning(50%);
     color: $border-text-color;
     background-color: white;
     border: $border-default;
@@ -133,7 +123,7 @@ body {
     padding: 0;
 }
 
-.goal {
+.todo-item {
     @extend %line-template;
     border-bottom: $border-default;
     margin: 0;
@@ -168,7 +158,7 @@ body {
     width: 27%;
 }
 
-.check-option {
+.todos-display-mode {
     margin: 20px auto;
     width: 40%;
     float: left;
@@ -182,7 +172,7 @@ body {
 
 .clearer-container {
     @extend .items-left;
-    button {
+    .clear-completed-button {
         @extend %button-template;
     }
 }
