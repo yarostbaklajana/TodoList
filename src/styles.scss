@@ -2,27 +2,33 @@ html {
     font-size: 14px;
 }
 
-@mixin font-face($Name, $ext) {
+@mixin font-face($Name, $extArray) {
+
     @font-face {
+
         font-family: $Name;
-        src: url("fonts/" + $Name + "." + $ext) format($ext);
+        @each $ext in $extArray  {
+             @if $ext == "ttf" {
+                 src: url("fonts/" + $Name + "." + $ext) format("truetype");
+             } @else if $ext == "otf" {
+                  src: url("fonts/" + $Name + "." + $ext) format("opentype");               
+             } @else {
+                 src: url("fonts/" + $Name + "." + $ext) format($ext);
+             }  
+            
+        }
     }
 }
 
 $Quicksand_Light: "Quicksand-Light";
-$background-color: #f2f2f2;
-$border-text-color: #e2e2e2;
-$text-color-darkeen: #a5a5a5;
-$border-default: 1px solid $border-text-color;
-$border-fat-default: 2px solid $border-text-color;
-$bar-shadow: 0px 2px 5px 1px rgba(148,
-148,
-148,
-1);
+$todos-light-color: #e2e2e2;
+$todos-dark-color: #a5a5a5;
+$todos-think-border: 1px solid $todos-light-color;
+$todos-fat-border: 2px solid $todos-light-color;
+
 $large-font: 13rem;
 $medium-font: 4rem;
 $small-font: 2rem;
-$min-width-default: 1366px;
 
 %button-template {
     border: none;
@@ -46,16 +52,15 @@ $min-width-default: 1366px;
     }
 }
 
-@include font-face($Quicksand_Light,
-"woff");
+@include font-face($Quicksand_Light, "woff2" "woff");
 body {
-    background-color: $background-color;
+    background-color: #f2f2f2;
     margin: 0;
     font-family: $Quicksand_Light;
 }
 
 .main-container {
-    min-width: $min-width-default;
+    min-width: 1366px;
     height: 100vh;
 }
 
@@ -76,15 +81,15 @@ body {
 }
 
 .todo-bar {
-    color: $border-text-color;
+    color: $todos-light-color;
     background-color: white;
-    border: $border-default;
-    box-shadow: $bar-shadow;
+    border: $todos-think-border;
+    box-shadow: 0px 2px 5px 1px rgba(148,148,148,1);
     width: 75%;
 }
 
 .input-container {
-    border-bottom: $border-fat-default;
+    border-bottom: $todos-fat-border;
     position: relative;
     font-size: $medium-font;
     .todo-bar-input:focus+.icon {
@@ -114,14 +119,14 @@ body {
 }
 
 .todo-bar-body {
-    border-bottom: $border-fat-default;
+    border-bottom: $todos-fat-border;
     margin: 0;
     padding: 0;
 }
 
 .todo-item {
     font-size: $medium-font;
-    border-bottom: $border-default;
+    border-bottom: $todos-think-border;
     margin: 0;
     list-style-type: none;
     cursor: pointer;
@@ -138,25 +143,25 @@ body {
 
 .todo-bar-bottom {
     font-size: $small-font;
-    color: $text-color-darkeen;
+    color: $todos-dark-color;
     @extend %clearfix;
 }
 
 .items-left {
-    margin: 20px 0 20px 3%;
+    margin: 1rem 0 1rem 3%;
     float: left;
     width: 27%;
 }
 
 .todos-display-mode {
-    margin: 20px auto;
+    margin: 1rem auto;
     width: 40%;
     float: left;
     button {
         @extend %button-template;
     }
     .active {
-        border: $border-default;
+        border: $todos-think-border;
     }
 }
 
