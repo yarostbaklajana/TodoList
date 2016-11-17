@@ -45,6 +45,13 @@ $small-font: 2rem;
     }
 }
 
+%bar-template {    
+    color: $todos-light-color;
+    background-color: white;
+    border: $todos-think-border;
+    box-shadow: 0px 2px 5px 1px rgba(148,148,148,1);
+}
+
 @include font-face($Quicksand_Light, "woff2" "woff");
 body {
     background-color: #f2f2f2;
@@ -76,10 +83,7 @@ body {
 }
 
 .todo-bar {
-    color: $todos-light-color;
-    background-color: white;
-    border: $todos-think-border;
-    box-shadow: 0px 2px 5px 1px rgba(148,148,148,1);
+    @extend %bar-template;
     width: 75%;
 }
 
@@ -141,7 +145,6 @@ body {
     color: $todos-dark-color;
     @extend %clearfix;
 }
-
 .items-left {
     margin: 1rem 0 1rem 3%;
     float: left;
@@ -153,7 +156,7 @@ body {
     width: 40%;
     float: left;
     button {
-        @extend %button-template;
+        @extend %button-template;        
     }
     .active {
         border: $todos-think-border;
@@ -164,6 +167,21 @@ body {
     @extend .items-left;
     .clear-completed-button {
         @extend %button-template;
+    }    
+}
+
+.hidden-bar-like {
+    @extend %bar-template;
+    height: 0.5rem;
+    border-top: none;
+    &.first {
+        width: 74%;     
+        z-index: -1;   
+    }
+
+    &.second {
+        width: 73%;
+        z-index: -2;
     }
 }
 
