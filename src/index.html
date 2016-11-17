@@ -8,17 +8,17 @@
     <main class="main-container">
         <h1 class="page-heading">todos</h1>
         <div class="todos-container">
-        	<div class="todo-bar">
+        	<div class="todo-panel">
                 <header class="input-container">
-                    <input type="text" placeholder="What needs to be done?" class="todo-bar-input" />  
+                    <input type="text" placeholder="What needs to be done?" class="todo-panel-input" />  
                     <span class="glyphicon glyphicon-menu-down icon"></span>                                 
                 </header>        		
-        		<ul class="todo-bar-body">
+        		<ul class="todo-panel-body">
         			<li class="todo-item checked"><span class="fa fa-check-circle icon"></span>Try JavaScript</li>
         			<li class="todo-item"><span class="fa fa-circle-o icon"></span>Buy a Unicorn</li>
         		</ul>
-        		<footer class="todo-bar-bottom">
-        			<p class="items-left">1 item left</p>
+        		<footer class="todo-panel-bottom">
+        			<div class="items-left"><span>1 item left</span></div>
         			<div class="todos-display-mode">
         				<button class="active" type="button">All</button>
         				<button type="button">Active</button>
@@ -29,8 +29,6 @@
                     </div>                           			
         		</footer>                  
         	</div>
-            <div class="hidden-bar-like first"></div>
-            <div class="hidden-bar-like second"></div> 
         </div>
     </main>
 </body>

@@ -3,12 +3,10 @@ html {
 }
 
 @mixin font-face($Name, $extArray) {
-
     @font-face {
-
         font-family: $Name;
-        @each $ext in $extArray  {             
-            src: url("fonts/" + $Name + "." + $ext) format($ext);          
+        @each $ext in $extArray {
+            src: url("fonts/" + $Name + "." + $ext) format($ext);
         }
     }
 }
@@ -18,11 +16,9 @@ $todos-light-color: #e2e2e2;
 $todos-dark-color: #a5a5a5;
 $todos-think-border: 1px solid $todos-light-color;
 $todos-fat-border: 2px solid $todos-light-color;
-
 $large-font: 13rem;
 $medium-font: 4rem;
 $small-font: 2rem;
-
 %button-template {
     border: none;
     background: transparent;
@@ -45,14 +41,9 @@ $small-font: 2rem;
     }
 }
 
-%bar-template {    
-    color: $todos-light-color;
-    background-color: white;
-    border: $todos-think-border;
-    box-shadow: 0px 2px 5px 1px rgba(148,148,148,1);
-}
 
-@include font-face($Quicksand_Light, "woff2" "woff");
+@include font-face($Quicksand_Light,
+"woff2" "woff");
 body {
     background-color: #f2f2f2;
     margin: 0;
@@ -70,7 +61,7 @@ body {
     flex-direction: column;
     align-items: center;
     min-height: 25rem;
-    height: 75%;    
+    height: 75%;
 }
 
 .page-heading {
@@ -79,11 +70,13 @@ body {
     text-align: center;
     margin: 0px;
     min-height: 13rem;
-    height: 25%;    
+    height: 25%;
 }
 
-.todo-bar {
-    @extend %bar-template;
+.todo-panel {    
+    color: $todos-light-color;
+    background-color: white;
+    border: $todos-think-border;
     width: 75%;
 }
 
@@ -91,7 +84,7 @@ body {
     border-bottom: $todos-fat-border;
     position: relative;
     font-size: $medium-font;
-    .todo-bar-input:focus+.icon {
+    .todo-panel-input:focus+.icon {
         color: indianred;
     }
     @extend %clearfix;
@@ -105,7 +98,7 @@ body {
     }
 }
 
-.todo-bar-input {
+.todo-panel-input {
     background: transparent;
     width: calc(100% - 8rem);
     border: none;
@@ -117,7 +110,7 @@ body {
     }
 }
 
-.todo-bar-body {
+.todo-panel-body {
     border-bottom: $todos-fat-border;
     margin: 0;
     padding: 0;
@@ -140,23 +133,38 @@ body {
     }
 }
 
-.todo-bar-bottom {
-    font-size: $small-font;
+.todo-panel-bottom {
+    font-size: 0;
     color: $todos-dark-color;
-    @extend %clearfix;
+    /*@extend %clearfix;*/
+    position: relative;
+    &::after {
+        z-index: -1;
+        content: '';
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 50px;
+        overflow: hidden;        
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
+    }
 }
+
 .items-left {
     margin: 1rem 0 1rem 3%;
-    float: left;
+    display: inline-block;    
+    font-size: $small-font;
     width: 27%;
 }
 
 .todos-display-mode {
     margin: 1rem auto;
     width: 40%;
-    float: left;
+    display: inline-block;    
+    font-size: $small-font;
     button {
-        @extend %button-template;        
+        @extend %button-template;
     }
     .active {
         border: $todos-think-border;
@@ -167,21 +175,6 @@ body {
     @extend .items-left;
     .clear-completed-button {
         @extend %button-template;
-    }    
-}
-
-.hidden-bar-like {
-    @extend %bar-template;
-    height: 0.5rem;
-    border-top: none;
-    &.first {
-        width: 74%;     
-        z-index: -1;   
-    }
-
-    &.second {
-        width: 73%;
-        z-index: -2;
     }
 }
 
