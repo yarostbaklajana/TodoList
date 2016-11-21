@@ -1,4 +1,185 @@
-.greater {
-  color: red;
-  font-size: 26px;
+html {
+    font-size: 14px;
+}
+
+@mixin font-face($Name, $extArray) {
+    @font-face {
+        font-family: $Name;
+        @each $ext in $extArray {
+            src: url("fonts/" + $Name + "." + $ext) format($ext);
+        }
+    }
+}
+
+$Quicksand_Light: "Quicksand-Light";
+$todos-light-color: #e2e2e2;
+$todos-dark-color: #a5a5a5;
+$todos-think-border: 1px solid $todos-light-color;
+$todos-fat-border: 2px solid $todos-light-color;
+$large-font: 13rem;
+$medium-font: 4rem;
+$small-font: 2rem;
+%button-template {
+    border: none;
+    background: transparent;
+    outline: none;
+    &:hover {
+        color: #3489a8;
+        font-weight: bold;
+    }
+}
+
+%clearfix {
+    &:before {
+        content: "";
+        display: table;
+    }
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+
+@include font-face($Quicksand_Light,
+"woff2" "woff");
+body {
+    background-color: #f2f2f2;
+    margin: 0;
+    font-family: $Quicksand_Light;
+}
+
+.main-container {
+    min-width: 1366px;
+    height: 100vh;
+}
+
+.todos-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    min-height: 25rem;
+    height: 75%;
+}
+
+.page-heading {
+    color: #c69f9f;
+    font-size: $large-font;
+    text-align: center;
+    margin: 0px;
+    min-height: 13rem;
+    height: 25%;
+}
+
+.todo-panel {    
+    color: $todos-light-color;
+    background-color: white;
+    border: $todos-think-border;
+    width: 75%;
+}
+
+.input-container {
+    border-bottom: $todos-fat-border;
+    position: relative;
+    font-size: $medium-font;
+    .todo-panel-input:focus+.icon {
+        color: indianred;
+    }
+    @extend %clearfix;
+}
+
+.icon {
+    margin: auto 0.5em;
+    padding: 1rem 0;
+    &:hover {
+        color: #91ea9b;
+    }
+}
+
+.todo-input {
+    background: transparent;
+    width: calc(100% - 8rem);
+    border: none;
+    font-style: italic;
+    outline: none;
+    float: right;
+    &:focus {
+        color: black;
+    }
+}
+
+.list-of-todos{
+    border-bottom: $todos-fat-border;
+    margin: 0;
+    padding: 0;
+}
+
+.todo-item {
+    font-size: $medium-font;
+    border-bottom: $todos-think-border;
+    margin: 0;
+    list-style-type: none;
+    cursor: pointer;
+    &:last-child {
+        border: none;
+    }
+    &.checked {
+        .icon {
+            color: #91ea9b;
+        }
+        text-decoration: line-through;
+    }
+}
+
+.todo-panel-footer {
+    font-size: 0;
+    color: $todos-dark-color;
+    /*@extend %clearfix;*/
+    position: relative;
+    &::after {
+        z-index: -1;
+        content: '';
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 50px;
+        overflow: hidden;        
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
+    }
+}
+
+.items-left {
+    margin: 1rem 0 1rem 3%;
+    display: inline-block;    
+    font-size: $small-font;
+    width: 27%;
+}
+
+.todos-display-mode {
+    margin: 1rem auto;
+    width: 40%;
+    display: inline-block;    
+    font-size: $small-font;
+    button {
+        @extend %button-template;
+    }
+    .active {
+        border: $todos-think-border;
+    }
+}
+
+.clearer-container {
+    @extend .items-left;
+    .clear-completed-button {
+        @extend %button-template;
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    html {
+        font-size: 18px;
+    }
 }
