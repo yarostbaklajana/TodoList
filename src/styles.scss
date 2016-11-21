@@ -98,7 +98,7 @@ body {
     }
 }
 
-.todo-panel-input {
+.todo-input {
     background: transparent;
     width: calc(100% - 8rem);
     border: none;
@@ -110,7 +110,7 @@ body {
     }
 }
 
-.todo-panel-body {
+.list-of-todos{
     border-bottom: $todos-fat-border;
     margin: 0;
     padding: 0;
@@ -133,7 +133,7 @@ body {
     }
 }
 
-.todo-panel-bottom {
+.todo-panel-footer {
     font-size: 0;
     color: $todos-dark-color;
     /*@extend %clearfix;*/
