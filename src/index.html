@@ -13,9 +13,8 @@
                     <input type="text" placeholder="What needs to be done?" class="todo-input" />  
                     <span class="glyphicon glyphicon-menu-down icon"></span>                                 
                 </header>        		
-        		<ul class="list-of-todos">
-        			<li class="todo-item checked"><span class="fa fa-check-circle icon"></span>Try JavaScript</li>
-        			<li class="todo-item"><span class="fa fa-circle-o icon"></span>Buy a Unicorn</li>
+        		<ul class="list-of-todos" data-bind="foreach: todoList">
+        			<li class="todo-item"><span class="fa fa-circle-o icon"></span><span data-bind="text: todo"></span></li>
         		</ul>
         		<footer class="todo-panel-footer">
         			<div class="items-left"><span>1 item left</span></div>

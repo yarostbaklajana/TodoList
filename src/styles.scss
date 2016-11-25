@@ -84,7 +84,7 @@ body {
     border-bottom: $todos-fat-border;
     position: relative;
     font-size: $medium-font;
-    .todo-panel-input:focus+.icon {
+    .todo-input:focus+.icon {
         color: indianred;
     }
     @extend %clearfix;
