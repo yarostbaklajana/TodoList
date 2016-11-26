@@ -10,7 +10,7 @@
         <div class="todos-container">
         	<div class="todo-panel">
                 <header class="input-container">
-                    <input type="text" placeholder="What needs to be done?" class="todo-input" />  
+                    <input data-bind="value: inputText, valueUpdate: 'afterkeydown', event: {'keyup': addNewTodo }" type="text" placeholder="What needs to be done?" class="todo-input" />  
                     <span class="glyphicon glyphicon-menu-down icon"></span>                                 
                 </header>        		
         		<ul class="list-of-todos" data-bind="foreach: todoList">
