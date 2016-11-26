@@ -14,7 +14,7 @@
                     <span class="glyphicon glyphicon-menu-down icon"></span>                                 
                 </header>        		
         		<ul class="list-of-todos" data-bind="foreach: todoList">
-        			<li class="todo-item"><span class="fa fa-circle-o icon"></span><span data-bind="text: todo"></span></li>
+        			<li class="todo-item" data-bind="css: {'checked': checked}, click: $parent.toggleChecking"><span class="fa icon" data-bind="css: {'fa-circle-o': unchecked, 'fa-check-circle': checked }"></span><span data-bind="text: value"></span></li>
         		</ul>
         		<footer class="todo-panel-footer">
         			<div class="items-left"><span>1 item left</span></div>
