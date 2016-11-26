@@ -1,15 +1,12 @@
 import * as ko from 'knockout';
+import {Todo} from './todo.model.js';
 
-class Todo {
-    constructor(todo) {
-        this.todo = todo;
-    }
-}
-
-class ViewModel {
+export class ViewModel {
     constructor() {
-        this.todoList = [new Todo("Try javaScript"), new Todo("Buy a Unicorn")]
+        this.todoList = [new Todo("Try javaScript"), new Todo("Buy a Unicorn")]        
+    }
+
+    toggleChecking(todo) {
+        todo.checked(!todo.checked());
     }
 }
-
-ko.applyBindings(new ViewModel());
