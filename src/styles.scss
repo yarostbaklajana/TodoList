@@ -1,5 +1,5 @@
 html {
-    font-size: 14px;
+    font-size: 12px;
 }
 
 @mixin font-face($Name, $extArray) {
@@ -53,15 +53,17 @@ body {
 .main-container {
     min-width: 1366px;
     height: 100vh;
+    display: flex;
+    flex-direction: column;  
+    overflow-x: auto;  
 }
 
 .todos-container {
-    display: flex;
-    justify-content: center;
+    display: flex;    
     flex-direction: column;
     align-items: center;
-    min-height: 25rem;
-    height: 75%;
+    min-height: 9rem;   
+    flex: 1 1 auto;    
 }
 
 .page-heading {
@@ -70,14 +72,16 @@ body {
     text-align: center;
     margin: 0px;
     min-height: 13rem;
-    height: 25%;
+    flex: 1 1 auto;
 }
 
-.todo-panel {    
+.todo-panel {
     color: $todos-light-color;
     background-color: white;
     border: $todos-think-border;
     width: 75%;
+    display: flex;
+    flex-direction: column;    
 }
 
 .input-container {
@@ -87,6 +91,7 @@ body {
     .todo-input:focus+.icon {
         color: indianred;
     }
+    flex: 2 2 auto;
     @extend %clearfix;
 }
 
@@ -111,9 +116,13 @@ body {
 }
 
 .list-of-todos{
+    flex: 1 1 auto;
     border-bottom: $todos-fat-border;
     margin: 0;
     padding: 0;
+    max-height: calc(5rem * 5 + 0.5rem * 10);
+    overflow-y: auto;
+    white-space: nowrap;    
 }
 
 .todo-item {
@@ -123,6 +132,8 @@ body {
     list-style-type: none;
     cursor: pointer;
     user-select: none;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
     &:last-child {
         border: none;
     }
@@ -135,6 +146,7 @@ body {
 }
 
 .todo-panel-footer {
+    flex: 2 2 auto;
     font-size: 0;
     color: $todos-dark-color;
     /*@extend %clearfix;*/
@@ -181,6 +193,6 @@ body {
 
 @media screen and (min-width: 1600px) {
     html {
-        font-size: 18px;
+        font-size: 16px;
     }
 }
