@@ -12,7 +12,7 @@ export class ViewModel {
     }
 
     addNewTodo(todo, event) {
-        if(event.keyCode === 13) {
+        if(event.keyCode === 13 && this.inputText() !== '') {
             const text = this.inputText();
             const todo = new Todo(text);            
             this.todoList.unshift(todo);                
