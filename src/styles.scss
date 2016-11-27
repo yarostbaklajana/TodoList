@@ -52,16 +52,18 @@ body {
 
 .main-container {
     min-width: 1366px;
-    height: 100vh;    
+    height: 100vh;
+    display: flex;
+    flex-direction: column;  
+    overflow-x: auto;  
 }
 
 .todos-container {
-    display: flex;
-    justify-content: center;
+    display: flex;    
     flex-direction: column;
     align-items: center;
-    min-height: 25rem;
-    height: 75%;    
+    min-height: 9rem;   
+    flex: 1 1 auto;    
 }
 
 .page-heading {
@@ -70,7 +72,7 @@ body {
     text-align: center;
     margin: 0px;
     min-height: 13rem;
-    height: 25%;
+    flex: 1 1 auto;
 }
 
 .todo-panel {
@@ -131,6 +133,7 @@ body {
     cursor: pointer;
     user-select: none;
     overflow-x: hidden;
+    text-overflow: ellipsis;
     &:last-child {
         border: none;
     }
