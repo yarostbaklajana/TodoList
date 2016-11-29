@@ -25,9 +25,9 @@
                 <footer class="todo-panel-footer">
                     <div class="items-left" data-bind="text: itemsLeftText"></div>
                     <div class="todos-display-mode">
-                        <button data-bind="css: {'active': currentMode() === 'all'}, click: switchModeDisplayingAllItems" type="button">All</button>
-                        <button data-bind="css: {'active': currentMode() === 'active'}, click: switchModeDisplayingActiveItems" type="button">Active</button>
-                        <button data-bind="css: {'active': currentMode() === 'completed'}, click: switchModeDisplayingCompletedItems" type="button">Completed</button>
+                        <button data-bind="css: {'active': currentDisplayMode() === 'all'}, click: switchModeToAll" type="button">All</button>
+                        <button data-bind="css: {'active': currentDisplayMode() === 'active'}, click: switchModeToActive" type="button">Active</button>
+                        <button data-bind="css: {'active': currentDisplayMode() === 'completed'}, click: switchModeToCompleted" type="button">Completed</button>
                     </div>
                     <div class="clearer-container">
                         <button type="button" class="clear-completed-button">Clear completed</button>

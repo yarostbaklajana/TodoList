@@ -1,21 +1,29 @@
 import * as ko from 'knockout';
-import {Todo} from './todo.model.js';
+import { Todo } from './todo.model.js';
 
-const DISPLAY_MODS = {
-            all: 'all',
-            active: 'active',
-            completed: 'completed'
+const DISPLAY_MODES = {
+    get all() {
+        return 'all';
+    },
+
+    get active() {
+        return 'active';
+    },
+
+    get completed() {
+        return 'completed';
+    }
 }
 
 export class ViewModel {
-    constructor() {         
-        this.todoList = ko.observableArray();        
+    constructor() {
+        this.todoList = ko.observableArray();
         this.inputText = ko.observable('');
-        this.itemsLeftCount = ko.computed(() => this.todoList().filter((element) => !element.checked()).length); 
+        this.itemsLeftCount = ko.computed(() => this.todoList().filter((element) => !element.checked()).length);
         this.itemsLeftText = ko.computed(this.getItemsLeftText, this);
-        this.currentMode = ko.observable(DISPLAY_MODS.all);
-        this.displayedListOfTodos = ko.computed(this.getDisplayedTodos, this);                
-    }        
+        this.currentDisplayMode = ko.observable(DISPLAY_MODES.all);
+        this.displayedListOfTodos = ko.computed(this.getDisplayedTodos, this);
+    }
 
     toggleChecking(todo) {
         todo.checked(!todo.checked());
@@ -25,17 +33,17 @@ export class ViewModel {
         const ENTER_KEY_CODE = 13;
         const ESCAPE_KEY_CODE = 27;
 
-        if(event.keyCode === ENTER_KEY_CODE && this.inputText()) {
+        if (event.keyCode === ENTER_KEY_CODE && this.inputText()) {
             const text = this.inputText();
-            const todo = new Todo(text);            
-            this.todoList.unshift(todo);                
+            const todo = new Todo(text);
+            this.todoList.unshift(todo);
             this.inputText('');
-        } 
+        }
 
         if (event.keyCode === ESCAPE_KEY_CODE) {
             this.inputText('');
-        }       
-    }    
+        }
+    }
 
     getItemsLeftText() {
         let count = this.itemsLeftCount();
@@ -45,30 +53,30 @@ export class ViewModel {
     }
 
     getDisplayedTodos() {
-        const current = this.currentMode();
+        const current = this.currentDisplayMode();
 
-        if (current === 'all') {
+        if (current === DISPLAY_MODES.all) {
             return this.todoList();
         }
 
-        if (current === 'active') {
+        if (current === DISPLAY_MODES.active) {
             return this.todoList().filter((todo) => !todo.checked());
         }
 
-        if (current === 'completed') {
+        if (current === DISPLAY_MODES.completed) {
             return this.todoList().filter((todo) => todo.checked());
         }
     }
 
-    switchModeDisplayingAllItems() {
-        this.currentMode(DISPLAY_MODS.all);
+    switchModeToAll() {
+        this.currentDisplayMode(DISPLAY_MODES.all);
     }
 
-    switchModeDisplayingActiveItems() {
-        this.currentMode(DISPLAY_MODS.active);
+    switchModeToActive() {
+        this.currentDisplayMode(DISPLAY_MODES.active);
     }
 
-    switchModeDisplayingCompletedItems() {
-        this.currentMode(DISPLAY_MODS.completed);
+    switchModeToCompleted() {
+        this.currentDisplayMode(DISPLAY_MODES.completed);
     }
 }
