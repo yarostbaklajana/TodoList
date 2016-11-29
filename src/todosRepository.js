@@ -3,8 +3,10 @@ import { Todo } from './todo.model.js';
 
 export const todosRepository = {
     load() {
+        console.log(window.localStorage);
         let list = JSON.parse(localStorage.getItem('todoList'));
-        return list.map((todo) => new Todo(todo.value, todo.checked)) ||  [];
+
+        return list === null ? [] : list.map((todo) => new Todo(todo.value, todo.checked)) ;
     },
 
     save(uploadedList) {
