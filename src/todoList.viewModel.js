@@ -62,6 +62,8 @@ export class ViewModel {
                 return this.todoList().filter((todo) => !todo.checked());
             case DISPLAY_MODES.completed:
                 return this.todoList().filter((todo) => todo.checked());
+            default: 
+                return this.todoList();
         }
     }
 
