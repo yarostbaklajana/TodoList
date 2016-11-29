@@ -78,4 +78,8 @@ export class ViewModel {
     switchModeToCompleted() {
         this.currentDisplayMode(DISPLAY_MODES.completed);
     }
+
+    clearCompletedTodos() {
+        this.todoList(this.todoList().filter((todo) => !todo.checked()));
+    }
 }
