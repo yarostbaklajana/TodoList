@@ -54,16 +54,16 @@ export class ViewModel {
 
     getDisplayedTodos() {
         const current = this.currentDisplayMode();
+        const todoItems = this.todoList();
 
-        switch (current) {
-            case DISPLAY_MODES.all:
-                return this.todoList();
+        switch (current) {            
             case DISPLAY_MODES.active:
-                return this.todoList().filter((todo) => !todo.checked());
+                return todoItems.filter((todo) => !todo.checked());
             case DISPLAY_MODES.completed:
-                return this.todoList().filter((todo) => todo.checked());
+                return todoItems.filter((todo) => todo.checked());
+            case DISPLAY_MODES.all:
             default: 
-                return this.todoList();
+                return todoItems;
         }
     }
 
