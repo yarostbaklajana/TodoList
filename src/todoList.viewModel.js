@@ -1,5 +1,6 @@
 import * as ko from 'knockout';
 import { Todo } from './todo.model.js';
+import { todosRepository } from './todosRepository.js';
 
 const DISPLAY_MODES = {
     get all() {
@@ -16,8 +17,9 @@ const DISPLAY_MODES = {
 }
 
 export class ViewModel {
-    constructor() {
-        this.todoList = ko.observableArray();
+    constructor(list) {
+        this.toggleChecking = this.toggleChecking.bind(this);
+        this.todoList = ko.observableArray(list);
         this.inputText = ko.observable('');
         this.itemsLeftCount = ko.computed(() => this.todoList().filter((element) => !element.checked()).length);
         this.itemsLeftText = ko.computed(this.getItemsLeftText, this);
@@ -25,8 +27,11 @@ export class ViewModel {
         this.displayedListOfTodos = ko.computed(this.getDisplayedTodos, this);
     }
 
+
+
     toggleChecking(todo) {
         todo.checked(!todo.checked());
+        this.saveState();
     }
 
     handleKeyUp(todo, event) {
@@ -38,6 +43,7 @@ export class ViewModel {
             const todo = new Todo(text);
             this.todoList.unshift(todo);
             this.inputText('');
+            this.saveState();
         }
 
         if (event.keyCode === ESCAPE_KEY_CODE) {
@@ -56,13 +62,13 @@ export class ViewModel {
         const current = this.currentDisplayMode();
         const todoItems = this.todoList();
 
-        switch (current) {            
+        switch (current) {
             case DISPLAY_MODES.active:
                 return todoItems.filter((todo) => !todo.checked());
             case DISPLAY_MODES.completed:
                 return todoItems.filter((todo) => todo.checked());
             case DISPLAY_MODES.all:
-            default: 
+            default:
                 return todoItems;
         }
     }
@@ -81,5 +87,10 @@ export class ViewModel {
 
     clearCompletedTodos() {
         this.todoList(this.todoList().filter((todo) => !todo.checked()));
+        this.saveState();
+    }
+
+    saveState() {
+        todosRepository.save(this.todoList);
     }
 }
