@@ -19,10 +19,12 @@ $todos-fat-border: 2px solid $todos-light-color;
 $large-font: 13rem;
 $medium-font: 4rem;
 $small-font: 2rem;
-%button-template {
+%link-template {
     border: none;
     background: transparent;
     outline: none;
+    text-decoration: none;
+    color: #a5a5a5;
     &:hover {
         color: #3489a8;
         font-weight: bold;
@@ -175,8 +177,8 @@ body {
     width: 40%;
     display: inline-block;
     font-size: $small-font;
-    button {
-        @extend %button-template;
+    a {
+        @extend %link-template;
     }
     .active {
         border: $todos-think-border;
@@ -186,7 +188,7 @@ body {
 .clearer-container {
     @extend .items-left;
     .clear-completed-button {
-        @extend %button-template;
+        @extend %link-template;
     }
 }
 
