@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    <main class="main-container">
+    <main class="main-container" data-bind="page: {id: '?', params: ['mode']}, role: 'start'">
         <h1 class="page-heading">todos</h1>
         <div class="todos-container">
             <div class="todo-panel">
@@ -25,9 +25,9 @@
                 <footer class="todo-panel-footer">
                     <div class="items-left" data-bind="text: itemsLeftText"></div>
                     <div class="todos-display-mode">
-                        <button data-bind="css: {'active': currentDisplayMode() === 'all'}, click: switchModeToAll" type="button">All</button>
-                        <button data-bind="css: {'active': currentDisplayMode() === 'active'}, click: switchModeToActive" type="button">Active</button>
-                        <button data-bind="css: {'active': currentDisplayMode() === 'completed'}, click: switchModeToCompleted" type="button">Completed</button>
+                        <a data-bind="page-href: {path: '/#main', params: {mode: 'all'}}, css: {'active': mode() === 'all'}" type="button">All</a>
+                        <a data-bind="page-href: {path: '/#main', params: {mode: 'active'}}, css: {'active': mode() === 'active'}" type="button">Active</a>
+                        <a data-bind="page-href: {path: '/#main', params: {mode: 'completed'}}, css: {'active': mode() === 'completed'}" type="button">Completed</a>
                     </div>
                     <div class="clearer-container">
                         <button type="button" data-bind="click: clearCompletedTodos" class="clear-completed-button">Clear completed</button>

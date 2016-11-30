@@ -23,7 +23,7 @@ export class ViewModel {
         this.inputText = ko.observable('');
         this.itemsLeftCount = ko.computed(() => this.todoList().filter((element) => !element.checked()).length);
         this.itemsLeftText = ko.computed(this.getItemsLeftText, this);
-        this.currentDisplayMode = ko.observable(DISPLAY_MODES.all);
+        this.mode = ko.observable(DISPLAY_MODES.all);
         this.displayedListOfTodos = ko.computed(this.getDisplayedTodos, this);
     }
 
@@ -59,7 +59,7 @@ export class ViewModel {
     }
 
     getDisplayedTodos() {
-        const current = this.currentDisplayMode();
+        const current = this.mode();
         const todoItems = this.todoList();
 
         switch (current) {
@@ -71,18 +71,6 @@ export class ViewModel {
             default:
                 return todoItems;
         }
-    }
-
-    switchModeToAll() {
-        this.currentDisplayMode(DISPLAY_MODES.all);
-    }
-
-    switchModeToActive() {
-        this.currentDisplayMode(DISPLAY_MODES.active);
-    }
-
-    switchModeToCompleted() {
-        this.currentDisplayMode(DISPLAY_MODES.completed);
     }
 
     clearCompletedTodos() {
