@@ -2,15 +2,15 @@ import * as ko from 'knockout';
 import { Todo } from './todo.model.js';
 
 export const todosRepository = {
-    load() {
-        console.log(window.localStorage);
-        let list = JSON.parse(localStorage.getItem('todoList'));
+    repository: window.localStorage,
 
-        return list === null ? [] : list.map((todo) => new Todo(todo.value, todo.checked)) ;
+    load() {
+        let list = JSON.parse(this.repository.getItem('todoList')) || [] ;
+        return list;
     },
 
     save(uploadedList) {
         const list = ko.toJS(uploadedList);
-        localStorage.setItem('todoList', JSON.stringify(list));
+        this.repository.setItem('todoList', JSON.stringify(list));
     }
 }

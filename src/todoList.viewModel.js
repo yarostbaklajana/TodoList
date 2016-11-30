@@ -91,8 +91,6 @@ export class ViewModel {
     }
 
     saveState() {
-        todosRepository.save(this.todoList());
+        todosRepository.save(this.todoList);
     }
 }
-
-
