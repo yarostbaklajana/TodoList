@@ -5,6 +5,11 @@ import './todoList.viewModel.js';
 import * as ko from 'knockout';
 import {ViewModel} from './todoList.viewModel.js';
 import { todosRepository } from './todosRepository.js';
+import * as pager from 'exports?pager!imports?$=jquery,ko=knockout!pagerjs';
 
 const list = todosRepository.load();
-ko.applyBindings(new ViewModel(list));
+const viewModel = new ViewModel(list);
+
+pager.extendWithPage(viewModel);
+ko.applyBindings(viewModel);
+pager.start();

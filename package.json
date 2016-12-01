@@ -28,10 +28,12 @@
     "babel-plugin-transform-es2015-modules-commonjs": "6.18.0",
     "babel-preset-es2015": "6.18.0",
     "css-loader": "0.25.0",
+    "exports-loader": "0.6.3",
     "extract-text-webpack-plugin": "1.0.1",
     "file-loader": "0.9.0",
     "html-webpack-plugin": "2.24.1",
     "http-server": "0.9.0",
+    "imports-loader": "0.6.5",
     "node-sass": "3.10.1",
     "sass-loader": "4.0.2",
     "style-loader": "0.13.1",
@@ -41,6 +43,7 @@
   "dependencies": {
     "bootstrap": "3.3.7",
     "font-awesome": "4.7.0",
-    "knockout": "3.4.1"
+    "knockout": "3.4.1",
+    "pagerjs": "1.0.0"
   }
 }
